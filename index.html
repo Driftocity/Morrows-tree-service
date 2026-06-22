@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Morrow's Tree Service | Professional Tree Care</title>
+  <meta name="description" content="Morrow's Tree Service — expert tree removal, trimming, and stump grinding. Licensed, insured, and locally trusted. Call for a free estimate." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest:   #0D1F0F;
+      --canopy:   #1A3A1C;
+      --green:    #2E6B30;
+      --cream:    #F5F0E8;
+      --gold:     #C8A84B;
+      --bark:     #8B4513;
+      --text:     #1C1C1C;
+      --muted:    #5A5A4A;
+      --radius:   6px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── UTILITY ──────────────────────────────────────────── */
+    .label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+    }
+
+    .container {
+      width: min(1160px, 92vw);
+      margin: 0 auto;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      padding: 0.85rem 2rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--forest);
+    }
+    .btn-gold:hover { background: #d9b95a; }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--cream);
+      border: 2px solid var(--gold);
+    }
+    .btn-outline:hover { background: var(--gold); color: var(--forest); }
+
+    /* ─── NAV ──────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(13,31,15,0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(200,168,75,0.2);
+      padding: 0.9rem 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .nav-logo svg { width: 36px; height: 36px; }
+
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .nav-logo-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--cream);
+    }
+
+    .nav-logo-tag {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: rgba(245,240,232,0.8);
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-phone {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px; height: 2px;
+      background: var(--cream);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ─── HERO ─────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background: var(--forest);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Bark ring background pattern */
+    .hero-rings {
+      position: absolute;
+      inset: 0;
+      opacity: 0.07;
+    }
+
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(13,31,15,0.95) 50%, rgba(26,58,28,0.6) 100%);
+    }
+
+    .hero-image {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      object-fit: cover;
+      opacity: 0.35;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 8rem 0 5rem;
+      max-width: 680px;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-eyebrow-line {
+      width: 40px; height: 2px;
+      background: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: rgba(245,240,232,0.75);
+      margin-bottom: 2.5rem;
+      max-width: 520px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(245,240,232,0.65);
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    .badge-icon {
+      width: 18px; height: 18px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ─── SERVICES ─────────────────────────────────────────── */
+    .services {
+      padding: 7rem 0;
+      background: var(--cream);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--forest);
+      margin-top: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0.9rem auto 0;
+      line-height: 1.7;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: #fff;
+      border: 1px solid rgba(46,107,48,0.1);
+      border-radius: 12px;
+      padding: 2.2rem;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      cursor: default;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 48px rgba(13,31,15,0.1);
+      border-color: var(--gold);
+    }
+
+    .service-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--green), var(--canopy));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.3rem;
+    }
+
+    .service-icon svg {
+      width: 26px; height: 26px;
+      color: var(--gold);
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+    }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--forest);
+      margin-bottom: 0.6rem;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    /* ─── WHY US ────────────────────────────────────────────── */
+    .why-us {
+      background: var(--forest);
+      padding: 7rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-us::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(46,107,48,0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .why-text .label { margin-bottom: 0.6rem; display: block; }
+
+    .why-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    .why-text p {
+      color: rgba(245,240,232,0.7);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat { display: flex; flex-direction: column; }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: rgba(245,240,232,0.55);
+      margin-top: 0.2rem;
+      letter-spacing: 0.04em;
+    }
+
+    .why-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .feature-item {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(200,168,75,0.2);
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .feature-item:hover {
+      background: rgba(200,168,75,0.08);
+      border-color: rgba(200,168,75,0.5);
+    }
+
+    .feature-check {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      background: rgba(200,168,75,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .feature-check svg {
+      width: 14px; height: 14px;
+      color: var(--gold);
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .feature-text h4 {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--cream);
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-text p {
+      font-size: 0.83rem;
+      color: rgba(245,240,232,0.55);
+      line-height: 1.5;
+    }
+
+    /* ─── PROCESS ───────────────────────────────────────────── */
+    .process {
+      padding: 7rem 0;
+      background: #EDEAE0;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0;
+      margin-top: 4rem;
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(to right, var(--green), var(--gold), var(--green));
+      opacity: 0.3;
+    }
+
+    .process-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 1.5rem;
+      position: relative;
+    }
+
+    .step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      background: var(--forest);
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+      position: relative;
+      z-index: 1;
+      border: 3px solid var(--gold);
+      transition: transform 0.2s;
+    }
+
+    .process-step:hover .step-num { transform: scale(1.08); }
+
+    .process-step h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--forest);
+      margin-bottom: 0.5rem;
+    }
+
+    .process-step p {
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── TESTIMONIALS ─────────────────────────────────────── */
+    .testimonials {
+      padding: 7rem 0;
+      background: var(--cream);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .testimonial-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid rgba(46,107,48,0.1);
+      transition: box-shadow 0.2s;
+    }
+
+    .testimonial-card:hover { box-shadow: 0 12px 40px rgba(13,31,15,0.08); }
+
+    .stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 1rem;
+    }
+
+    .stars svg {
+      width: 16px; height: 16px;
+      fill: var(--gold);
+      stroke: var(--gold);
+    }
+
+    .testimonial-card blockquote {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 1.3rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .author-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--canopy));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .author-info strong {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--forest);
+    }
+
+    .author-info span {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ─── EMERGENCY BAND ───────────────────────────────────── */
+    .emergency {
+      background: linear-gradient(135deg, var(--bark), #6B2F0E);
+      padding: 1.4rem 0;
+      text-align: center;
+    }
+
+    .emergency-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .emergency-text {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--cream);
+    }
+
+    .emergency-text svg {
+      width: 20px; height: 20px;
+      fill: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .emergency-text span {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .emergency-phone {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+    }
+
+    /* ─── CTA SECTION ──────────────────────────────────────── */
+    .cta-section {
+      background: var(--canopy);
+      padding: 7rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 80%, rgba(200,168,75,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(46,107,48,0.15) 0%, transparent 50%);
+    }
+
+    .cta-section h2 {
+      position: relative;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--cream);
+      margin: 0.5rem 0 1rem;
+      line-height: 1.15;
+    }
+
+    .cta-section p {
+      position: relative;
+      color: rgba(245,240,232,0.7);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .cta-actions {
+      position: relative;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-phone-big {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .cta-phone-big svg {
+      width: 28px; height: 28px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    footer {
+      background: var(--forest);
+      color: rgba(245,240,232,0.65);
+      padding: 4rem 0 2rem;
+      border-top: 1px solid rgba(200,168,75,0.2);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand .nav-logo { margin-bottom: 1rem; }
+
+    .footer-brand p {
+      font-size: 0.87rem;
+      line-height: 1.7;
+      max-width: 280px;
+      color: rgba(245,240,232,0.5);
+    }
+
+    .footer-col h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col ul li {
+      margin-bottom: 0.5rem;
+      font-size: 0.87rem;
+    }
+
+    .footer-col ul li a {
+      color: rgba(245,240,232,0.55);
+      transition: color 0.15s;
+    }
+    .footer-col ul li a:hover { color: var(--gold); }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.87rem;
+      color: rgba(245,240,232,0.55);
+    }
+
+    .footer-contact-item svg {
+      width: 15px; height: 15px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(245,240,232,0.1);
+      padding-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      color: rgba(245,240,232,0.35);
+    }
+
+    .footer-bottom-badges {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-badge {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(200,168,75,0.2);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+    }
+
+    /* ─── MOBILE NAV ───────────────────────────────────────── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--forest);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--cream);
+      font-weight: 700;
+    }
+
+    .mobile-menu a:hover { color: var(--gold); }
+
+    .close-menu {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      background: none; border: none;
+      cursor: pointer;
+      color: var(--cream);
+    }
+
+    .close-menu svg {
+      width: 28px; height: 28px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* ─── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta .btn { display: none; }
+      .hamburger { display: flex; }
+      .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .process-steps::before { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-phone { display: none; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .process-steps { gap: 2rem; }
+      .hero-image { width: 100%; opacity: 0.15; }
+      .stats-row { gap: 1.5rem; }
+    }
+
+    /* ─── SCROLL ANIMATIONS ────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="18" r="17" stroke="#C8A84B" stroke-width="1.5"/>
+          <path d="M18 28V18" stroke="#C8A84B" stroke-width="2" stroke-linecap="round"/>
+          <path d="M18 18C18 18 12 14 12 9C12 6.79 14.69 5 18 5C21.31 5 24 6.79 24 9C24 14 18 18 18 18Z" fill="#2E6B30"/>
+          <path d="M18 22C18 22 13 19 13 15.5" stroke="#2E6B30" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M18 22C18 22 23 19 23 15.5" stroke="#2E6B30" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M16 28H20" stroke="#8B4513" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Morrow's Tree Service</span>
+          <span class="nav-logo-tag">Licensed &amp; Insured</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why-us">Why Us</a></li>
+        <li><a href="#process">Our Process</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="tel:+15551234567" class="nav-phone">(555) 123-4567</a>
+        <a href="#contact" class="btn btn-gold">Free Estimate</a>
+      </div>
+
+      <div class="hamburger" onclick="openMenu()" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-menu" onclick="closeMenu()" aria-label="Close menu">
+      <svg viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 6l12 12M6 18L18 6"/></svg>
+    </button>
+    <a href="#services" onclick="closeMenu()">Services</a>
+    <a href="#why-us" onclick="closeMenu()">Why Us</a>
+    <a href="#process" onclick="closeMenu()">Our Process</a>
+    <a href="#testimonials" onclick="closeMenu()">Reviews</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <a href="tel:+15551234567" class="btn btn-gold" style="font-size:1.1rem;">Call (555) 123-4567</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <!-- SVG bark ring background pattern -->
+    <svg class="hero-rings" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" viewBox="0 0 900 600">
+      <g fill="none" stroke="#C8A84B">
+        <ellipse cx="450" cy="300" rx="50" ry="30" stroke-width="1"/>
+        <ellipse cx="450" cy="300" rx="100" ry="65" stroke-width="1"/>
+        <ellipse cx="450" cy="300" rx="150" ry="100" stroke-width="1"/>
+        <ellipse cx="450" cy="300" rx="210" ry="140" stroke-width="1"/>
+        <ellipse cx="450" cy="300" rx="275" ry="185" stroke-width="1"/>
+        <ellipse cx="450" cy="300" rx="345" ry="235" stroke-width="1"/>
+        <ellipse cx="450" cy="300" rx="420" ry="285" stroke-width="1"/>
+        <ellipse cx="450" cy="300" rx="500" ry="340" stroke-width="1"/>
+        <ellipse cx="450" cy="300" rx="580" ry="400" stroke-width="1"/>
+      </g>
+    </svg>
+
+    <div class="hero-gradient"></div>
+
+    <!-- Hero photo (replaced by CSS gradient on load as fallback) -->
+    <img
+      class="hero-image"
+      src="https://images.unsplash.com/photo-1542838686-af09c5c82ad4?w=1200&q=80&auto=format"
+      alt="Professional arborist working high in a tree"
+      loading="eager"
+      onerror="this.style.display='none'"
+    />
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-line"></div>
+          <span class="label">Professional Tree Care</span>
+        </div>
+
+        <h1>Every Tree<br/>Tells a Story.<br/><em>We Write</em><br/><em>the Last Chapter.</em></h1>
+
+        <p class="hero-sub">
+          Morrow's Tree Service delivers expert tree removal, precision trimming, and complete stump grinding — safely, cleanly, and on time. Serving our community for over 15 years.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-gold">Get a Free Estimate</a>
+          <a href="tel:+15551234567" class="btn btn-outline">Call Now: (555) 123-4567</a>
+        </div>
+
+        <div class="hero-badges">
+          <div class="badge">
+            <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Fully Licensed &amp; Insured</span>
+          </div>
+          <div class="badge">
+            <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>24/7 Emergency Service</span>
+          </div>
+          <div class="badge">
+            <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+            <span>Free Estimates</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMERGENCY BAND -->
+  <div class="emergency">
+    <div class="container emergency-inner">
+      <div class="emergency-text">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 19h20L12 2z"/></svg>
+        <span>Storm Damage? Tree Down on Your Property?</span>
+      </div>
+      <a href="tel:+15551234567" class="emergency-phone">24/7 Emergency Line: (555) 123-4567</a>
+      <a href="tel:+15551234567" class="btn btn-gold" style="font-size:0.85rem;padding:0.65rem 1.4rem;">Call Now</a>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">What We Do</span>
+        <h2>Complete Tree Care,<br/>Start to Finish</h2>
+        <p>From routine maintenance to complex removals, our ISA-trained crew handles every job with precision and care for your property.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2v20M8 6l4-4 4 4M8 18l4 4 4-4"/><path d="M4 12h16"/></svg>
+          </div>
+          <h3>Tree Removal</h3>
+          <p>Safe, efficient removal of dead, diseased, or hazardous trees of any size. We protect your lawn, landscaping, and structures throughout the entire process.</p>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 006 6 6 6 0 006-6V3"/><path d="M4 20h16"/></svg>
+          </div>
+          <h3>Tree Trimming &amp; Pruning</h3>
+          <p>Precision pruning that improves tree health, opens up sight lines, clears power lines, and keeps your canopy looking its best year round.</p>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M3 12h3m12 0h3M12 3v3m0 12v3"/></svg>
+          </div>
+          <h3>Stump Grinding</h3>
+          <p>Complete stump removal down to below grade, eliminating trip hazards, regrowth, and pest harborage. Your yard left clean and ready to replant.</p>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3>Storm Damage Cleanup</h3>
+          <p>Rapid response after severe weather events. We clear fallen limbs and downed trees quickly to restore safety to your home and property.</p>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Tree Health Assessment</h3>
+          <p>Our certified arborists evaluate tree structure, disease, and stability risk — giving you an honest assessment and a clear plan of action.</p>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+          </div>
+          <h3>Land Clearing</h3>
+          <p>Full-scale clearing for new construction, fence lines, and lot preparation. We handle brush, stumps, and debris so your project can move forward.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why-us" id="why-us">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-text fade-up">
+          <span class="label">Why Morrow's</span>
+          <h2>We Treat Your Property Like Our Own</h2>
+          <p>
+            Since 2009, Morrow's Tree Service has built its reputation one yard at a time — showing up on time, communicating clearly, and leaving every job site cleaner than we found it. No sub-contractors, no surprises on the final bill.
+          </p>
+
+          <div class="stats-row">
+            <div class="stat">
+              <span class="stat-num">15+</span>
+              <span class="stat-label">Years in Business</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">2,400+</span>
+              <span class="stat-label">Trees Removed</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">100%</span>
+              <span class="stat-label">Satisfaction Rate</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 2.5rem;">
+            <a href="#contact" class="btn btn-gold">Schedule a Free Walk-Through</a>
+          </div>
+        </div>
+
+        <div class="why-features fade-up">
+          <div class="feature-item">
+            <div class="feature-check">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="feature-text">
+              <h4>Fully Licensed &amp; Insured</h4>
+              <p>General liability and workers' comp on every crew member. You're never exposed.</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-check">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="feature-text">
+              <h4>Written Estimates — No Surprises</h4>
+              <p>We quote in writing before a single saw is started. What we quote is what you pay.</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-check">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="feature-text">
+              <h4>Own Crew, Never Sub-Contracted</h4>
+              <p>Every job is performed by our trained, background-checked employees. Always.</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-check">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="feature-text">
+              <h4>Complete Debris Cleanup Included</h4>
+              <p>We haul away every log, limb, and chip. Your yard will look better when we leave.</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-check">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="feature-text">
+              <h4>24/7 Emergency Response</h4>
+              <p>Storm doesn't wait for business hours, and neither do we. Call any time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">How It Works</span>
+        <h2>Simple from Call to Cleanup</h2>
+        <p>Getting your trees taken care of shouldn't be stressful. Here's exactly what to expect.</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-step fade-up">
+          <div class="step-num">1</div>
+          <h3>Call or Request Online</h3>
+          <p>Reach out by phone or our contact form. We'll respond within the hour during business hours.</p>
+        </div>
+
+        <div class="process-step fade-up">
+          <div class="step-num">2</div>
+          <h3>Free On-Site Estimate</h3>
+          <p>We come to you, walk the property, and provide a detailed written quote — no cost, no pressure.</p>
+        </div>
+
+        <div class="process-step fade-up">
+          <div class="step-num">3</div>
+          <h3>Scheduled Service</h3>
+          <p>We work around your schedule. Our crew shows up on time, every time, with all equipment needed.</p>
+        </div>
+
+        <div class="process-step fade-up">
+          <div class="step-num">4</div>
+          <h3>Clean Site, Done Deal</h3>
+          <p>Work complete, every piece of debris hauled away. We do a final walk with you before collecting payment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">Customer Reviews</span>
+        <h2>What Our Neighbors Are Saying</h2>
+      </div>
+
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card fade-up">
+          <div class="stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <blockquote>"A massive oak came down on my fence during the storm. Morrow's had a crew here within three hours. They removed the tree, cleared all the debris, and even stacked the firewood neatly. Unbelievable service."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">R</div>
+            <div class="author-info">
+              <strong>Robert T.</strong>
+              <span>Homeowner — Storm Damage Removal</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up">
+          <div class="stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <blockquote>"I got three quotes. Morrow's wasn't the cheapest — but they were the most professional by far. Showed up exactly when they said, explained everything they were doing, and my yard looked great when they left."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">L</div>
+            <div class="author-info">
+              <strong>Linda K.</strong>
+              <span>Homeowner — Tree Removal &amp; Stump Grinding</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up">
+          <div class="stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <blockquote>"We needed six large trees cleared for a new fence project. Morrow's quoted us fairly, showed up with a full crew, and finished in one day. The price matched the quote exactly. These are good people."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">M</div>
+            <div class="author-info">
+              <strong>Marcus &amp; Diane W.</strong>
+              <span>Homeowners — Land Clearing</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / CONTACT -->
+  <section class="cta-section" id="contact">
+    <div class="container">
+      <span class="label">Get Started Today</span>
+      <h2>Ready to Reclaim<br/>Your Property?</h2>
+      <p>Call us or fill out the form below. We'll get back to you within the hour — and your estimate is always free.</p>
+
+      <div class="cta-phone-big">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.7A2 2 0 012 .82h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (555) 123-4567
+      </div>
+
+      <!-- Simple contact form -->
+      <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(200,168,75,0.25);border-radius:16px;padding:2.5rem;max-width:580px;margin:0 auto;text-align:left;">
+        <p style="color:rgba(245,240,232,0.8);font-size:0.9rem;margin-bottom:1.5rem;font-weight:600;">Or request your free estimate online:</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+          <div>
+            <label style="display:block;font-size:0.8rem;color:rgba(245,240,232,0.6);margin-bottom:0.4rem;font-weight:500;">First Name</label>
+            <input type="text" placeholder="John" style="width:100%;padding:0.75rem 1rem;border-radius:6px;border:1px solid rgba(200,168,75,0.3);background:rgba(13,31,15,0.5);color:var(--cream);font-size:0.9rem;font-family:Inter,sans-serif;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#C8A84B'" onblur="this.style.borderColor='rgba(200,168,75,0.3)'"/>
+          </div>
+          <div>
+            <label style="display:block;font-size:0.8rem;color:rgba(245,240,232,0.6);margin-bottom:0.4rem;font-weight:500;">Last Name</label>
+            <input type="text" placeholder="Smith" style="width:100%;padding:0.75rem 1rem;border-radius:6px;border:1px solid rgba(200,168,75,0.3);background:rgba(13,31,15,0.5);color:var(--cream);font-size:0.9rem;font-family:Inter,sans-serif;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#C8A84B'" onblur="this.style.borderColor='rgba(200,168,75,0.3)'"/>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="display:block;font-size:0.8rem;color:rgba(245,240,232,0.6);margin-bottom:0.4rem;font-weight:500;">Phone Number</label>
+          <input type="tel" placeholder="(555) 000-0000" style="width:100%;padding:0.75rem 1rem;border-radius:6px;border:1px solid rgba(200,168,75,0.3);background:rgba(13,31,15,0.5);color:var(--cream);font-size:0.9rem;font-family:Inter,sans-serif;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#C8A84B'" onblur="this.style.borderColor='rgba(200,168,75,0.3)'"/>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="display:block;font-size:0.8rem;color:rgba(245,240,232,0.6);margin-bottom:0.4rem;font-weight:500;">Service Needed</label>
+          <select style="width:100%;padding:0.75rem 1rem;border-radius:6px;border:1px solid rgba(200,168,75,0.3);background:rgba(13,31,15,0.9);color:var(--cream);font-size:0.9rem;font-family:Inter,sans-serif;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#C8A84B'" onblur="this.style.borderColor='rgba(200,168,75,0.3)'">
+            <option value="">Select a service...</option>
+            <option>Tree Removal</option>
+            <option>Tree Trimming / Pruning</option>
+            <option>Stump Grinding</option>
+            <option>Storm Damage Cleanup</option>
+            <option>Tree Health Assessment</option>
+            <option>Land Clearing</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:1.5rem;">
+          <label style="display:block;font-size:0.8rem;color:rgba(245,240,232,0.6);margin-bottom:0.4rem;font-weight:500;">Tell Us More (Optional)</label>
+          <textarea rows="3" placeholder="How many trees? Any specific concerns? Best time to reach you?" style="width:100%;padding:0.75rem 1rem;border-radius:6px;border:1px solid rgba(200,168,75,0.3);background:rgba(13,31,15,0.5);color:var(--cream);font-size:0.9rem;font-family:Inter,sans-serif;outline:none;resize:vertical;transition:border-color 0.2s;" onfocus="this.style.borderColor='#C8A84B'" onblur="this.style.borderColor='rgba(200,168,75,0.3)'"></textarea>
+        </div>
+
+        <button onclick="handleFormSubmit(event)" class="btn btn-gold" style="width:100%;font-size:1rem;padding:1rem;">Request My Free Estimate</button>
+
+        <div id="form-success" style="display:none;text-align:center;padding:1rem;margin-top:1rem;background:rgba(46,107,48,0.3);border:1px solid rgba(46,107,48,0.5);border-radius:6px;color:var(--cream);font-size:0.9rem;">
+          ✓ Thanks! We'll be in touch within the hour.
+        </div>
+
+        <p style="text-align:center;font-size:0.75rem;color:rgba(245,240,232,0.35);margin-top:1rem;">We never share your information. No spam, ever.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo" style="margin-bottom:1rem;display:inline-flex;">
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px;">
+              <circle cx="18" cy="18" r="17" stroke="#C8A84B" stroke-width="1.5"/>
+              <path d="M18 28V18" stroke="#C8A84B" stroke-width="2" stroke-linecap="round"/>
+              <path d="M18 18C18 18 12 14 12 9C12 6.79 14.69 5 18 5C21.31 5 24 6.79 24 9C24 14 18 18 18 18Z" fill="#2E6B30"/>
+              <path d="M18 22C18 22 13 19 13 15.5" stroke="#2E6B30" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M18 22C18 22 23 19 23 15.5" stroke="#2E6B30" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M16 28H20" stroke="#8B4513" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div class="nav-logo-text" style="margin-left:0.65rem;">
+              <span class="nav-logo-name">Morrow's Tree Service</span>
+              <span class="nav-logo-tag">Licensed &amp; Insured</span>
+            </div>
+          </a>
+          <p>Locally owned and operated since 2009. We take pride in every job, treat every property with care, and stand behind our work unconditionally.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Tree Removal</a></li>
+            <li><a href="#services">Tree Trimming</a></li>
+            <li><a href="#services">Stump Grinding</a></li>
+            <li><a href="#services">Storm Cleanup</a></li>
+            <li><a href="#services">Land Clearing</a></li>
+            <li><a href="#services">Tree Assessment</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.7A2 2 0 012 .82h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <a href="tel:+15551234567" style="color:rgba(245,240,232,0.55);transition:color 0.15s;" onmouseover="this.style.color='#C8A84B'" onmouseout="this.style.color='rgba(245,240,232,0.55)'">(555) 123-4567</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:info@morrowstreeservice.com" style="color:rgba(245,240,232,0.55);transition:color 0.15s;" onmouseover="this.style.color='#C8A84B'" onmouseout="this.style.color='rgba(245,240,232,0.55)'">info@morrowstreeservice.com</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Mon–Sat 7am–6pm<br/>24/7 Emergency Line</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2025 Morrow's Tree Service. All rights reserved.</span>
+        <div class="footer-bottom-badges">
+          <span class="footer-badge">Licensed</span>
+          <span class="footer-badge">Insured</span>
+          <span class="footer-badge">ISA Certified</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ─── MOBILE MENU ─────────────────────────────────────────
+    function openMenu() {
+      document.getElementById('mobileMenu').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ─── SCROLL ANIMATIONS ────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ─── FORM SUBMIT (demo / replace with Formspree or Netlify Forms) ─
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      document.getElementById('form-success').style.display = 'block';
+      e.target.style.opacity = '0.5';
+      e.target.disabled = true;
+    }
+
+    // ─── NAV SCROLL TINT ─────────────────────────────────────
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 40) {
+        nav.style.background = 'rgba(13,31,15,0.98)';
+      } else {
+        nav.style.background = 'rgba(13,31,15,0.92)';
+      }
+    });
+  </script>
+
+</body>
+</html>
